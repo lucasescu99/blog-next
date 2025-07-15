@@ -8,7 +8,13 @@ import { getUser } from "@/server/users";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-export default async function Article({ params }: { params: { articleID: string } }) {
+type ArticleProps = {
+    params: Promise<{
+        articleID: string;
+    }>
+}
+
+export default async function Article({ params }: ArticleProps) {
     const { articleID } = await params;
     const article = await getArticle(new ObjectId(articleID));
     if (!article) {

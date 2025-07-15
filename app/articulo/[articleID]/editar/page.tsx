@@ -8,7 +8,13 @@ import Separator from "@/app/components/Separator";
 import EditArticleForm from "./EditArticleForm";
 import { z } from "zod";
 
-export default async function Editar({ params }: { params: { articleID: string } }) {
+type EditarProps = {
+  params: Promise<{
+    articleID: string;
+  }>
+}
+
+export default async function Editar({ params }: EditarProps) {
   const { articleID } = await params;
   const session = await auth.api.getSession({
     headers: await headers()
