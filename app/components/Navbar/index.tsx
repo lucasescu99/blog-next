@@ -15,15 +15,16 @@ export default function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-          <h1>Wortise - Blog</h1>
-          <div>
+            <h1>Wortise - Blog</h1>
             {user ? (
-                <div className={styles.user}>
-                    <p>{user.name}</p>
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
+                <>
+                    
+                    <div className={styles.user}>
+                        <p>{user.name}</p>
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
+                </>
             ) : null}  
-          </div>
         </nav>
     )
 }
