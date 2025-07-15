@@ -3,12 +3,14 @@ import { getUsersWithArticlesCount } from "@/server/users";
 import Image from "next/image";
 import Link from "next/link";
 import Separator from "../components/Separator";
+import Search from "../components/Search";
 
 export default async function Dashboard() {
     const users = await getUsersWithArticlesCount();
     
     return (
         <div className={styles.dashboard}>
+            <Search />
             <div className={styles.header}>
                 <Separator text="Autores" />
             </div>

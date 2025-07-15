@@ -1,0 +1,45 @@
+.search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 40px;
+    .form {
+        display: flex;
+        gap: 10px;
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: #fff;
+                color: #000;
+            }
+        }
+    }
+    .results {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: uppercase;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    }
+}

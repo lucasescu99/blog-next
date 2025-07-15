@@ -3,8 +3,8 @@
 import db from "@/db/mongoDB";
 import { authClient } from "@/lib/auth-client";
 import { ObjectId } from "mongodb";
-import { Article } from "@/interfaces/articles";
-import { articleSchema } from "@/interfaces/articles";
+import { Article, ArticleToClient } from "@/interfaces/articles";
+import { articleSchema, articleToClientSchema } from "@/interfaces/articles";
 
 export async function createArticle(title: string, text: string, image: string): Promise<void> {
   let redirectPath = "/dashboard";
@@ -45,7 +45,6 @@ export async function deleteArticle(articleId: ObjectId | string): Promise<void>
 export async function getUserArticles(userId: ObjectId): Promise<Article[]> {
   try {
     const articles = await db.collection("article").find({ author: userId }).toArray();
-    console.log(articles);
     return articles.map((article) => articleSchema.parse(article));
   } catch (error) {
     console.error(error);
@@ -65,5 +64,36 @@ export async function getArticle(articleId: ObjectId): Promise<Article | null> {
   } catch (error) {
     console.error(error);
     throw new Error("Error al obtener el artículo");
+  }
+}
+
+export async function findArticles(query: string): Promise<ArticleToClient[]> {
+  // Buscar articulos por titulo, texto o nombre de autor con un limite de 5
+  try {
+    const authors = await db.collection("user").find({ name: { $regex: query, $options: "i" } }).toArray();
+
+    if (authors.length > 0) {
+      const articlesByTitleText = await db.collection("article").find({ $or: [{ title: { $regex: query, $options: "i" } }, { text: { $regex: query, $options: "i" } }, { author: { $in: authors.map((author) => author._id) } }] }).limit(5).toArray();
+
+      return articlesByTitleText.map((article) => articleToClientSchema.parse({
+        _id: article._id.toString(),
+        title: article.title,
+        text: article.text,
+        image: article.image,
+        author: article.author.toString(),
+      }));
+    }
+
+    const articlesByTitleText = await db.collection("article").find({ $or: [{ title: { $regex: query, $options: "i" } }, { text: { $regex: query, $options: "i" } }] }).limit(5).toArray();
+    return articlesByTitleText.map((article) => articleToClientSchema.parse({
+      _id: article._id.toString(),
+      title: article.title,
+      text: article.text,
+      image: article.image,
+      author: article.author.toString(),
+    }));
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error al buscar los artículos");
   }
 }

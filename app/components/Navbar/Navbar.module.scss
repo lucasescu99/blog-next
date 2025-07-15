@@ -17,7 +17,10 @@
         font-size: 1.5rem;
         font-weight: 400;
         text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
     }
+    
     .buttons {
         display: flex;
         gap: 1rem;
@@ -30,6 +33,11 @@
             border: 1px solid #000;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: #000;
+                color: white;
+            }
         }
     }
     .user {

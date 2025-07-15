@@ -2,6 +2,7 @@
 import styles from "./Navbar.module.scss";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
     const {useSession, signOut} = authClient;
@@ -15,7 +16,7 @@ export default function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <h1>Wortise - Blog</h1>
+            <Link href="/dashboard"><h1>Wortise - Blog</h1></Link>
             {user ? (
                 <>
                     
