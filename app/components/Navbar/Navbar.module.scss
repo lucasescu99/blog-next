@@ -63,3 +63,23 @@
         }
     }
 }
+
+// Styles for mobile devices
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        h1 {
+            font-size: 1rem;
+        }
+        .buttons {
+            a {
+                font-size: 1rem;
+            }
+        }
+        .user {
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}

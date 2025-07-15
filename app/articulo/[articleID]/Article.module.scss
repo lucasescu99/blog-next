@@ -47,3 +47,10 @@
     margin: 0 auto;
   }
 }
+
+// Styles for mobile devices
+@media (max-width: 768px) {
+  .article {
+    padding: 16px;
+  }
+}

@@ -23,3 +23,20 @@
     border-radius: 10px;
   }
 }
+
+// Styles for mobile devices
+@media (max-width: 768px) {
+  .articles {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article {
+    width: 90%;
+    grid-template-rows: 200px fit-content fit-content;
+    padding: 16px;
+    img {
+      height: 200px;
+    }
+  }
+}
