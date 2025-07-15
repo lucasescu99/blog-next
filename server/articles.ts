@@ -22,18 +22,20 @@ export async function createArticle(title: string, text: string, image: string):
   }
 }
 
-export async function updateArticle(articleId: ObjectId, title: string, text: string, image: string): Promise<void> {
+export async function updateArticle(articleId: ObjectId | string, data: { title: string, text: string, image: string }): Promise<void> {
+  const articleIdObjectId = new ObjectId(articleId);
   try {
-    await db.collection("article").updateOne({ _id: articleId }, { $set: { title, text, image } });
+    await db.collection("article").updateOne({ _id: articleIdObjectId }, { $set: data });
   } catch (error) {
     console.error(error);
     throw new Error("Error al actualizar el artículo");
   }
 }
 
-export async function deleteArticle(articleId: ObjectId): Promise<void> {
+export async function deleteArticle(articleId: ObjectId | string): Promise<void> {
+  const articleIdObjectId = new ObjectId(articleId);
   try {
-    await db.collection("article").deleteOne({ _id: articleId });
+    await db.collection("article").deleteOne({ _id: articleIdObjectId });
   } catch (error) {
     console.error(error);
     throw new Error("Error al eliminar el artículo");
