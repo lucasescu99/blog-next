@@ -21,7 +21,7 @@ export default function Pagination({ components, maxItems }: PaginationProps) {
 
     return (
         <>
-            {components.slice((currentPage - 1) * maxItems, currentPage * maxItems).map((component, index) => component)}
+            {components.slice((currentPage - 1) * maxItems, currentPage * maxItems).map((component) => component)}
             <div className={styles.paginationButtons}>
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Anterior</button>
                 <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Siguiente</button>
