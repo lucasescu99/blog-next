@@ -6,7 +6,13 @@ import Separator from "@/app/components/Separator";
 import Pagination from "@/app/components/Pagination";
 import Image from "next/image";
 
-export default async function Autor({ params }: { params: { autorId: string } }) {
+type AutorProps = {
+    params: Promise<{
+        autorId: string;
+    }>
+} 
+
+export default async function Autor({ params }: AutorProps) {
     const { autorId } = await params;
     const articles = await getUserArticles(new ObjectId(autorId));
 
