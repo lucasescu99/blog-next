@@ -33,10 +33,13 @@ export default function CreateArticlePage() {
     setIsLoading(true);
     try {
       const articleId = await createArticle({...data, author: user.id});
-      console.log(articleId);
       router.push(`/articulo/${articleId}`);
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("Error al crear el artículo");
+      }
     } finally {
       setIsLoading(false);
     }
