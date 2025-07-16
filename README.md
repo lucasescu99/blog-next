@@ -1,3 +1,5 @@
+!!!!!!!IMPORTANTE: MODIFICACION FUERA DE FECHA, HICE UNA MODIFICACION FUERA DE FECHA YA QUE ME OLVIDE DE AGREGAR LA LOGICA PARA AGREGAR ARTICULOS!!!!!!!!!
+
 # Blog Next.js
 
 Un blog moderno construido con Next.js 15, TypeScript, MongoDB y autenticación con Better Auth. PD: Le dije a cursor que haga este README, le elimine varias cosas pero quedo bastante completo, aprendi un monton en este challenge :)

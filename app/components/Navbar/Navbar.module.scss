@@ -61,6 +61,20 @@
                 color: red;
             }
         }
+        .create {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            &:hover {
+                border: 1px solid lightblue;
+                color: lightblue;
+            }
+        }
     }
 }
 
@@ -69,16 +83,16 @@
     .navbar {
         height: auto;
         h1 {
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
         .buttons {
             a {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
         }
         .user {
             p {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
         }
     }

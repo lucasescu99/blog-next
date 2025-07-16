@@ -1,21 +1,16 @@
 "use server";
 
 import db from "@/db/mongoDB";
-import { authClient } from "@/lib/auth-client";
 import { ObjectId } from "mongodb";
-import { Article, ArticleToClient } from "@/interfaces/articles";
-import { articleSchema, articleToClientSchema } from "@/interfaces/articles";
+import { Article, ArticleToClient, CreateArticle } from "@/interfaces/articles";
+import { articleSchema, articleToClientSchema, createArticleSchema } from "@/interfaces/articles";
 
-export async function createArticle(title: string, text: string, image: string): Promise<void> {
-  let redirectPath = "/dashboard";
+export async function createArticle(data: CreateArticle): Promise<string> {
   try {
-    const { data: session } = await authClient.getSession()
-
-    if (!session) {
-      redirectPath = "/login";
-    } else {
-      await db.collection("article").insertOne({ title, text, author: session.user.id, image });
-    }
+    const userObjectId = new ObjectId(data.author);
+    const dataToInsert = createArticleSchema.parse({ ...data, author: userObjectId });
+    const article = await db.collection("article").insertOne(dataToInsert);
+    return article.insertedId.toString();
   } catch (error) {
     console.error(error);
     throw new Error("Error al crear el artículo");
